@@ -1,0 +1,237 @@
+<!-- EKENE OCHUBA - 3155904 -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <title>Convertion Tools</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header>
+       
+    </header>
+
+    <main>
+      <div class="box rounded glass">
+        <h1 class="title" id="title">Unit Converter</h1>
+
+        <div class="button_group">
+          <button
+            onclick="switchTab('temperature')"
+            class="btn h-9 font-semibold active"
+          >
+            Convert Temperature
+          </button>
+          <button
+            onclick="switchTab('currency')"
+            class="btn h-9 font-semibold"
+          >
+            Convert Currency
+          </button>
+          <button onclick="switchTab('speed')" class="btn h-9 font-semibold">
+            Convert Speed
+          </button>
+        </div>
+
+        <div class="form">
+          <!-- TEMPERATURE -->
+          <div action="get" id="temperature" class="tab active temp">
+            <div class="content active">
+              <!-- Temperature input -->
+              <input
+                id="temp-input"
+                type="number"
+                class="glass"
+                name="input"
+                placeholder="Enter Temperature"
+              />
+              
+              <!-- I learn how to apply radio button using this YouTube video ("https://www.youtube.com/watch?v=sSF0bXFUFGM") -->
+              <div class="temp-options">
+                <label><input type="radio" name="temp-conv" value="CtoF"> Celsius to Fahrenheit</label>
+                <label><input type="radio" name="temp-conv" value="FtoC"> Fahrenheit to Celsius</label>
+                <label><input type="radio" name="temp-conv" value="CtoK"> Celsius to Kelvin</label>
+                <label><input type="radio" name="temp-conv" value="KtoC"> Kelvin to Celsius</label>
+                <label><input type="radio" name="temp-conv" value="CtoR"> Celsius to Rankine</label>
+                <label><input type="radio" name="temp-conv" value="RtoC"> Rankine to Celsius</label>
+              </div>
+
+              
+              <div id="temp-result" class="glass">Result</div>
+              <button
+              id="convert_btn"
+              onclick="convertTempRadio()"
+              class="btn h-9 font-semibold"
+            >
+              Calculate
+            </button>
+            </div>            
+          </div>
+
+          <!-- CURRENCY -->
+          <div action="get" id="currency" class="tab temp">
+            <div class="content">
+              <!-- CURRENCY input -->
+              <input
+                id="currency-input"
+                type="number"
+                class="glass"
+                name="input"
+                placeholder="Enter Currency"
+              />
+              <p class="unit_label_Curr">From</p>
+
+             <!-- FROM CURRENCIES -->
+                <div class=" always-visible" id="from-currencies">
+                    <div class="optionCurr" data-currency="USD" onclick="selectCurrency(this, 'from')">
+                        <img src="images/USA.png" alt="USD" /> USD
+                      </div>
+                      <div class="optionCurr" data-currency="EUR" onclick="selectCurrency(this, 'from')">
+                        <img src="images/IRE.png" alt="EUR" /> EUR
+                      </div>
+                      <div class="optionCurr" data-currency="GBP" onclick="selectCurrency(this, 'from')">
+                        <img src="images/GB.png" alt="GBP" /> GBP
+                      </div>
+                      <div class="optionCurr" data-currency="JPY" onclick="selectCurrency(this, 'from')">
+                        <img src="images/JP.png" alt="JPY" /> JPY
+                      </div>
+                      <div class="optionCurr" data-currency="NGN" onclick="selectCurrency(this, 'from')">
+                        <img src="images/NGN.png" alt="NGN" /> NGN
+                      </div>
+                </div>
+
+
+
+              <!-- DOUBLE ARROW ICON -->
+              <div class="iconCurr">
+                <i class="fas fa-exchange-alt"></i>
+              </div>
+
+              <!-- TO CURRENCY -->
+              <div class="always-visible" id="to-currencies">
+                <div class="optionCurr" data-currency="USD" onclick="selectCurrency(this, 'to')">
+                    <img src="images/USA.png" alt="USD" /> USD
+                  </div>
+                  <div class="optionCurr" data-currency="EUR" onclick="selectCurrency(this, 'to')">
+                    <img src="images/IRE.png" alt="EUR" /> EUR
+                  </div>
+                  <div class="optionCurr" data-currency="GBP" onclick="selectCurrency(this, 'to')">
+                    <img src="images/GB.png" alt="GBP" /> GBP
+                  </div>
+                  <div class="optionCurr" data-currency="JPY" onclick="selectCurrency(this, 'to')">
+                    <img src="images/JP.png" alt="JPY" /> JPY
+                  </div>
+                  <div class="optionCurr" data-currency="NGN" onclick="selectCurrency(this, 'to')">
+                    <img src="images/NGN.png" alt="NGN" /> NGN
+                  </div>
+            </div>
+
+            <!-- CONVERT BTN -->
+              <button
+              id="converCurr_btn"
+              onclick="convertCurrency()"
+              class="btn h-9 font-semibold"
+            >
+              Calculate
+            </button>
+
+            <!-- RESULT -->
+              <div id="curr-result" class="glass">Result</div>
+
+            </div>
+          </div>
+
+          <!-- SPEED -->
+          <div action="get" id="speed" class="tab temp">
+            <div class="content">
+
+              <!-- SPEED input -->
+              <input
+                id="speed-input"
+                type="number"
+                class="glass"
+                name="input"
+                placeholder="Enter Speed"
+              />
+              <p class="unit_label_speed">From</p>
+
+             
+              <!-- Custom Dropdown for "From" -->
+              <div class="custom-select" id="from-dropdown">
+                <div
+                  class="selected-option"
+                  onclick="toggleDropdown('from-options2')"
+                >
+                  <span id="sfrom-text">Select unit</span>
+                </div>
+
+                 <!-- Custom Dropdown for "From" -->
+                <div class="options" id="from-options2">
+                    <div class="option" onclick="selectOption('sfrom', 'm/s')">m/s</div>
+                    <div class="option" onclick="selectOption('sfrom', 'km/h')">km/h</div>
+                    <div class="option" onclick="selectOption('sfrom', 'mph')">mph</div>
+                    <div class="option" onclick="selectOption('sfrom', 'kn')">knots</div>
+                    <div class="option" onclick="selectOption('sfrom', 'ft/s')">ft/s</div>
+                </div>
+              </div>
+
+              <!-- DOUBLE ARROW ICON -->
+              <div class="iconSpeed">
+                <i class="fas fa-exchange-alt"></i>
+              </div>
+
+              <!-- Custom Dropdown for "To" -->
+              <div class="custom-select" id="to-dropdown">
+                <div
+                  class="selected-option"
+                  onclick="toggleDropdown('to-options2')"
+                >
+                  <span id="s-to-text">Select unit</span>
+                </div>
+                <div class="options" id="to-options2">
+                    <div class="option" onclick="selectOption('s-to', 'm/s')">m/s</div>
+                    <div class="option" onclick="selectOption('s-to', 'km/h')">km/h</div>
+                    <div class="option" onclick="selectOption('s-to', 'mph')">mph</div>
+                    <div class="option" onclick="selectOption('s-to', 'kn')">knots</div>
+                    <div class="option" onclick="selectOption('s-to', 'ft/s')">ft/s</div>
+                </div>
+              </div>
+
+              <!-- CONVERT SPEED BTN -->
+              <button
+              id="convertSpeed_btn"
+              onclick="convertSpeed()"
+              class="btn h-9 font-semibold"
+            >
+              Calculate
+            </button>
+
+            <!-- RESULT -->
+              <div id="speed-result" class="glass">Result</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+    <p>Ekene Ochuba - 3155904</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

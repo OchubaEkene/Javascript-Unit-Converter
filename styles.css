@@ -1,0 +1,561 @@
+/* EKENE OCHUBA - 3155904 */
+
+*{
+    color: black; 
+    font-family: "Outfit", sans-serif;
+}
+body{
+    background: url("images/background.jpg");
+    background-size: 100%;
+    background-position: center;
+    display: flex;
+    margin: 0;
+    align-items: center; 
+    justify-content: enter;
+    height: 100vh;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    flex-direction: column; 
+}
+
+/* I learnt and applied this Glass Morphism effect using this YouTube video ("https://www.youtube.com/watch?v=3HRvb2tLqF4" */
+.glass{
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* Glassmorphism Dropdown */
+.glass-select {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    width: 100%;
+    appearance: none; /* Hide default arrow */
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.box{
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+    box-shadow: 200px;
+    display: flex;
+    align-items: center; 
+    justify-content:center;
+    flex-wrap: wrap;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 -4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* I learn how to Style radio buttons using this YouTube video ("https://www.youtube.com/watch?v=sSF0bXFUFGM")  */
+.temp-options label input{
+    margin: 5px;
+    padding: 5px;
+}
+.temp-options{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.temp-options label{
+    color: white;
+}
+
+.temp-options label:last-of-type {
+    margin-bottom: 2rem; /* margin bottom for better readability */
+}
+  
+/* styling the radio circle sizes */
+input[type="radio"] {
+    width: 20px;
+    height: 20px;
+}
+
+
+/* Glassmorphism Dropdown */
+/* Learnt with this video ("https://www.youtube.com/watch?v=3HRvb2tLqF4&pp=ygURZ2xhc3Ntb3JwaGlzbSBjc3M%3D") */
+.glass-select {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    width: 100%;
+    appearance: none; /* Hide default arrow */
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Dropdown container */
+.dropdown-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Flag styling */
+.dropdown-container img {
+    width: 25px;
+    height: 18px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+.selected-option img{
+    width: auto;
+    height:auto;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+
+/* Style options */
+.glass-select option {
+    background: rgba(255, 255, 255, 0.2);
+    color: black;
+    font-size: 16px;
+}
+
+
+.custom-select {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+}
+
+.selected-option {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: white;
+}
+
+.selected-option img {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+.options {
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: none;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+}
+.optionCurr {
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.optionCurr.selected{
+    border: 2px solid #c60000;
+  background-color: #e6f0ff;
+  border-radius: 8px;
+  color: black;
+}
+.option:hover {
+    background-color: gray;
+}
+.optionCurr:hover {
+    background-color: #f0f0f0;
+    color: black;
+
+}
+
+.active-option {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff; 
+}
+
+.option img {
+    width: 20px;
+    height: 15px;
+    margin-right: 10px;
+}
+.optionCurr img {
+    width: 50px;
+    height: 45px;
+    margin-right: 10px;
+}
+.tab.active{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+  
+}
+
+/* Change active button color */
+.button_group .btn.active {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    border-radius: 1.5rem;
+
+}
+.content {
+    display: none; /* Hide all content by default */ 
+}
+
+.content.active {
+    all: unset;
+    display: contents; /* Show only the active content */
+}
+
+.unit_label{
+    font-size: larger;
+    color: white;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+.unit_label_Curr{
+    margin-top: -1rem;
+    font-size: larger;
+    color: white;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+.unit_label_speed{
+    margin-top: -1rem;
+    font-size: larger;
+    color: white;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+.label_group p:last-child {
+    position: absolute;
+    margin-left: 340px; /* Moves the second h1 */
+}
+
+#convert_btn{
+    margin-top: 15rem;
+    margin-right: 7rem;
+}
+#convert_btn :hover{
+    background-color: white;
+    color: black;
+}
+#converCurr_btn{
+    margin-right: -400px;
+}
+#convertSpeed_btn{
+    margin-top: 150px;
+    margin-left: -800px;
+    margin-right: 400px;
+}
+#currency-input{
+    margin-left: -15rem;
+    margin-top: -2rem;
+}
+#currency #from-dropdown{
+    margin-top: -2rem;
+}
+#currency #to-dropdown{
+    margin-top: -2rem;
+}
+#speed #from-dropdown{
+    margin-top: -2rem;
+}
+#speed #to-dropdown{
+    margin-top: -2rem;
+}
+.always-visible {
+    gap: 12px;
+    color: white;
+    padding-top: 10px;
+    margin-bottom: 8rem;
+}
+
+h1{
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+    flex-basis: 100%;
+}
+
+input {
+    width: 250px;
+    height: 40px; 
+    padding: 8px;
+    margin-bottom: 2rem;
+    border: 2px solid gray;
+    font-size: 16px;
+}
+
+.from-input {
+    margin-left: 0px; /* Adjust this value as needed */
+}
+.to {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.to-input {
+    margin-left: 0px; /* Adjust this value as needed */
+}
+
+.custom-select{
+    margin-bottom: 2rem;
+}
+.selected-option{
+    width: 250px;
+    height: 40px; 
+    padding: 8px;
+    border: 2px solid gray;
+    font-size: 16px;
+}
+.options {
+    width: 250px;
+    padding: 8px;
+    border: 2px solid gray;
+    font-size: 16px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+}
+
+select:focus {
+    border-color: white; /* Change border color on focus */
+    outline: none;
+}
+
+option:disabled {
+    color: gray;
+}
+
+
+input:focus {
+    border: 2px solid rgba(255, 255, 255, 0.18);
+    outline: none; /* Removes the default focus outline */
+    background-color: lightgray; /* Changes background when typing */
+}
+
+#result:focus {
+    background-color: transparent !important; /* Keeps its original background */
+    outline: none;  /* Ensures no outline appears */
+}
+
+#temp-result{
+    color: white;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+    margin-left: 200px;
+    margin-right: -250px;
+}
+
+#currency{
+    margin-left: -100px;
+}
+#speed{
+    margin-left: -100px;
+}
+#speed-input{
+    margin-top: -2rem;
+}
+
+#curr-result {
+    color: white;
+    padding: 10px;
+    width: 200px;
+    margin-bottom: -5rem;
+    text-align: center;
+    margin-top: 15rem;
+    margin-left: -150px;
+
+}
+#speed-result{
+    color: white;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+    margin-top: 150px;
+    margin-left: -150px;
+}
+
+.temp-options{
+    margin-left: 100px;
+    margin-right: -100px;
+}
+
+#temp-input{
+    margin-left: 100px;
+}
+/* Top 3 btns group */
+.button_group{
+    border: 1px solid grey;
+    padding: 10px;
+    border-radius: 2.5rem;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    color: black;
+    flex-basis: 100%;
+}
+
+.button_group :hover{
+    background-color: white;
+    color: black;
+}
+
+
+#last_elements{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 50px;
+}
+
+#last_elements :hover{
+    background-color: white;
+    color: black;
+}
+
+.form img{
+    max-width: 35px;
+}
+
+/* Arrows */
+.icon i{
+    margin-left: 4rem;
+    cursor: pointer;
+    font-size: 27px;
+    color: white;
+    padding-bottom: 30px;
+}
+.iconCurr i{
+    cursor: pointer;
+    font-size: 27px;
+    color: white;
+    padding-bottom: 30px;
+    margin-top: -1rem;
+    margin-bottom: 25px;
+}
+.iconSpeed i{
+    margin-left: 4rem;
+    cursor: pointer;
+    font-size: 27px;
+    color: white;
+    padding-bottom: 30px;
+    margin-top: -1rem;
+    margin-bottom: 25px;
+}
+/* All Buttons */
+button{
+    border-radius: 1.5rem;
+    border: 1px solid gray;
+}
+
+/* Top 3 buttons */
+.btn{
+    display: block;
+    border-radius: 1.5rem;
+    background-color: inherit;
+    color: white;
+    font: inherit;
+    width: 250px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.temp{
+    display: flex;
+    gap: 20px;
+    flex-basis: 100%;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+input{
+    gap: 100rem;
+}
+/* FOOTER */
+footer {
+    width: 100vw;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    padding-right: 0;
+    padding-left: 0;
+    margin-top: auto;  /* Pushes footer to the bottom */
+}
+footer p{
+    color: white;
+    
+}
+main {
+    flex-grow: 1;  /* Allows the main content to grow and take the available space */
+}
+/* Definite Styling */
+.rounded{
+    border-radius: 1.5rem;
+}
+
+.h-9{
+    height: 2.25rem;
+} 
+
+.font-semibold{
+    font-weight: 600;
+}
+.text-13px{
+    font-size: 13px;
+}
+
+.outfit-font {
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+  }
