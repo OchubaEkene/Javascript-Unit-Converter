@@ -1,561 +1,659 @@
-/* EKENE OCHUBA - 3155904 */
+/* EKENE OCHUBA */
 
-*{
-    color: black; 
-    font-family: "Outfit", sans-serif;
+/* CSS Custom Properties */
+:root {
+  --primary-color: #1e90ff;
+  --secondary-color: #ffa500;
+  --accent-color: #ff4500;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-dark: #333333;
+  --background-glass: rgba(255, 255, 255, 0.1);
+  --background-glass-hover: rgba(255, 255, 255, 0.2);
+  --border-glass: rgba(255, 255, 255, 0.18);
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --border-radius: 20px;
+  --border-radius-small: 8px;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --transition: all 0.3s ease;
+  --font-family: "Outfit", sans-serif;
+  --font-family-display: "Bebas Neue", sans-serif;
 }
-body{
-    background: url("images/background.jpg");
-    background-size: 100%;
-    background-position: center;
-    display: flex;
+
+/* Reset and Base Styles */
+* {
     margin: 0;
-    align-items: center; 
-    justify-content: enter;
-    height: 100vh;
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
-    flex-direction: column; 
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* I learnt and applied this Glass Morphism effect using this YouTube video ("https://www.youtube.com/watch?v=3HRvb2tLqF4" */
-.glass{
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 20px;
-    border:1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
 }
 
-/* Glassmorphism Dropdown */
-.glass-select {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    padding: 10px;
-    font-size: 16px;
-    color: white;
-    width: 100%;
-    appearance: none; /* Hide default arrow */
-    cursor: pointer;
-    position: relative;
+body {
+  font-family: var(--font-family);
+  color: var(--text-primary);
+  background: url("images/background.jpg") center/cover no-repeat fixed;
+  min-height: 100vh;
+    display: flex;
+  flex-direction: column;
+  line-height: 1.6;
+}
+
+/* Utility Classes */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Glass Morphism Effect */
+/* I learnt and applied this Glass Morphism effect using this YouTube video ("https://www.youtube.com/watch?v=3HRvb2tLqF4") */
+.glass {
+  background: linear-gradient(135deg, var(--background-glass), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-glass);
+  box-shadow: var(--shadow-glass);
+}
+
+/* Header */
+header {
+  padding: var(--spacing-sm);
+  text-align: center;
+}
+
+/* Main Container */
+.converter-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  width: 100%;
+}
+
+/* Title */
+.title {
+  font-family: var(--font-family-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  color: var(--text-primary);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Tab Navigation */
+.tab-navigation {
+    display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
+  flex-wrap: wrap;
+}
+
+.tab-button {
     display: flex;
     align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--background-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--border-radius);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
-.box{
-    margin-top: 5rem;
-    margin-bottom: 2rem;
-    box-shadow: 200px;
-    display: flex;
-    align-items: center; 
-    justify-content:center;
-    flex-wrap: wrap;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 -4px 8px rgba(0, 0, 0, 0.2);
+.tab-button:hover {
+  background: var(--background-glass-hover);
+  transform: translateY(-2px);
 }
 
-/* I learn how to Style radio buttons using this YouTube video ("https://www.youtube.com/watch?v=sSF0bXFUFGM")  */
-.temp-options label input{
-    margin: 5px;
-    padding: 5px;
-}
-.temp-options{
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-.temp-options label{
-    color: white;
+.tab-button.active {
+  background: var(--text-primary);
+  color: var(--text-dark);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.temp-options label:last-of-type {
-    margin-bottom: 2rem; /* margin bottom for better readability */
-}
-  
-/* styling the radio circle sizes */
-input[type="radio"] {
-    width: 20px;
-    height: 20px;
+.tab-button:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
 }
 
+/* Converter Panels */
+.converter-panels {
+  position: relative;
+}
 
-/* Glassmorphism Dropdown */
-/* Learnt with this video ("https://www.youtube.com/watch?v=3HRvb2tLqF4&pp=ygURZ2xhc3Ntb3JwaGlzbSBjc3M%3D") */
-.glass-select {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    padding: 10px;
-    font-size: 16px;
-    color: white;
-    width: 100%;
-    appearance: none; /* Hide default arrow */
-    cursor: pointer;
-    position: relative;
+.converter-panel {
+  display: none;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.converter-panel.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Forms */
+.converter-form {
+  background: var(--background-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-glass);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Input Groups */
+.input-group {
+  margin-bottom: var(--spacing-lg);
+}
+
+.input-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.input-field {
+  width: 100%;
+  padding: var(--spacing-sm);
+  border: 2px solid var(--border-glass);
+  border-radius: var(--border-radius-small);
+  background: var(--background-glass);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background: var(--background-glass-hover);
+  box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.2);
+}
+
+.input-field::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Error Messages */
+.error-message {
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  margin-top: var(--spacing-xs);
+  min-height: 1.2rem;
+}
+
+/* Conversion Options */
+.conversion-options {
+  margin-bottom: var(--spacing-lg);
+  border: none;
+  padding: 0;
+}
+
+.fieldset-legend {
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+/* Radio Button Styling */
+/* I learnt how to style radio buttons using this YouTube video ("https://www.youtube.com/watch?v=sSF0bXFUFGM") */
+.radio-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-sm);
+}
+
+.radio-option {
     display: flex;
     align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  background: var(--background-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
-/* Dropdown container */
-.dropdown-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.radio-option:hover {
+  background: var(--background-glass-hover);
 }
 
-/* Flag styling */
-.dropdown-container img {
-    width: 25px;
-    height: 18px;
-    border-radius: 5px;
-    object-fit: cover;
-}
-.selected-option img{
-    width: auto;
-    height:auto;
-    border-radius: 5px;
-    object-fit: cover;
+.radio-option input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-color);
 }
 
-
-/* Style options */
-.glass-select option {
-    background: rgba(255, 255, 255, 0.2);
-    color: black;
-    font-size: 16px;
+.radio-label {
+  color: var(--text-primary);
+  font-weight: 500;
 }
 
+/* Currency Selector */
+.currency-selector {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--spacing-lg);
+  align-items: start;
+  margin-bottom: var(--spacing-lg);
+}
 
+.currency-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.currency-label {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+    text-align: center;
+}
+
+.currency-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: var(--spacing-xs);
+}
+
+.currency-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  background: var(--background-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.currency-option:hover {
+  background: var(--background-glass-hover);
+  transform: translateY(-2px);
+}
+
+.currency-option[aria-pressed="true"] {
+  background: var(--primary-color);
+  color: var(--text-primary);
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 15px rgba(30, 144, 255, 0.3);
+}
+
+.currency-option img {
+  width: 30px;
+  height: 20px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.exchange-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-top: var(--spacing-lg);
+}
+
+/* Unit Selector */
+.unit-selector {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--spacing-lg);
+  align-items: start;
+  margin-bottom: var(--spacing-lg);
+}
+
+.unit-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.unit-label {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+    text-align: center;
+}
+
+/* Custom Select */
 .custom-select {
-    position: relative;
-    display: inline-block;
-    width: 200px;
+  position: relative;
+  width: 100%;
 }
 
-.selected-option {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: white;
-}
-
-.selected-option img {
-    width: 25px;
-    height: 25px;
-    margin-right: 10px;
-}
-
-.options {
-    position: absolute;
-    width: 100%;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    display: none;
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 10;
-}
-
-.option {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    cursor: pointer;
-}
-.optionCurr {
-    color: white;
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-.optionCurr.selected{
-    border: 2px solid #c60000;
-  background-color: #e6f0ff;
-  border-radius: 8px;
-  color: black;
-}
-.option:hover {
-    background-color: gray;
-}
-.optionCurr:hover {
-    background-color: #f0f0f0;
-    color: black;
-
-}
-
-.active-option {
-    background-color: #007bff;
-    color: white;
-    border-color: #007bff; 
-}
-
-.option img {
-    width: 20px;
-    height: 15px;
-    margin-right: 10px;
-}
-.optionCurr img {
-    width: 50px;
-    height: 45px;
-    margin-right: 10px;
-}
-.tab.active{
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-  
-}
-
-/* Change active button color */
-.button_group .btn.active {
-    background-color: white;
-    color: black;
-    font-weight: bold;
-    border-radius: 1.5rem;
-
-}
-.content {
-    display: none; /* Hide all content by default */ 
-}
-
-.content.active {
-    all: unset;
-    display: contents; /* Show only the active content */
-}
-
-.unit_label{
-    font-size: larger;
-    color: white;
-    font-weight: 800;
-    text-align: center;
-    margin-bottom: 3rem;
-}
-.unit_label_Curr{
-    margin-top: -1rem;
-    font-size: larger;
-    color: white;
-    font-weight: 800;
-    text-align: center;
-    margin-bottom: 3rem;
-}
-.unit_label_speed{
-    margin-top: -1rem;
-    font-size: larger;
-    color: white;
-    font-weight: 800;
-    text-align: center;
-    margin-bottom: 3rem;
-}
-.label_group p:last-child {
-    position: absolute;
-    margin-left: 340px; /* Moves the second h1 */
-}
-
-#convert_btn{
-    margin-top: 15rem;
-    margin-right: 7rem;
-}
-#convert_btn :hover{
-    background-color: white;
-    color: black;
-}
-#converCurr_btn{
-    margin-right: -400px;
-}
-#convertSpeed_btn{
-    margin-top: 150px;
-    margin-left: -800px;
-    margin-right: 400px;
-}
-#currency-input{
-    margin-left: -15rem;
-    margin-top: -2rem;
-}
-#currency #from-dropdown{
-    margin-top: -2rem;
-}
-#currency #to-dropdown{
-    margin-top: -2rem;
-}
-#speed #from-dropdown{
-    margin-top: -2rem;
-}
-#speed #to-dropdown{
-    margin-top: -2rem;
-}
-.always-visible {
-    gap: 12px;
-    color: white;
-    padding-top: 10px;
-    margin-bottom: 8rem;
-}
-
-h1{
-    color: white;
-    text-align: center;
-    margin-bottom: 2rem;
-    flex-basis: 100%;
-}
-
-input {
-    width: 250px;
-    height: 40px; 
-    padding: 8px;
-    margin-bottom: 2rem;
-    border: 2px solid gray;
-    font-size: 16px;
-}
-
-.from-input {
-    margin-left: 0px; /* Adjust this value as needed */
-}
-.to {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+.select-button {
+  width: 100%;
+  padding: var(--spacing-sm);
+  background: var(--background-glass);
+  border: 2px solid var(--border-glass);
+  border-radius: var(--border-radius-small);
+  color: var(--text-primary);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-radius: 20px;
-    border:1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.to-input {
-    margin-left: 0px; /* Adjust this value as needed */
+.select-button:hover {
+  background: var(--background-glass-hover);
 }
 
-.custom-select{
-    margin-bottom: 2rem;
+.select-button:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.2);
 }
-.selected-option{
-    width: 250px;
-    height: 40px; 
-    padding: 8px;
-    border: 2px solid gray;
-    font-size: 16px;
+
+.select-button[aria-expanded="true"] {
+  border-color: var(--primary-color);
 }
-.options {
-    width: 250px;
-    padding: 8px;
-    border: 2px solid gray;
-    font-size: 16px;
+
+.select-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--background-glass);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border:1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-
+  border: 1px solid var(--border-glass);
+  border-radius: var(--border-radius-small);
+  box-shadow: var(--shadow-glass);
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
 }
 
-select:focus {
-    border-color: white; /* Change border color on focus */
-    outline: none;
+.select-options.show {
+  display: block;
+  animation: slideDown 0.2s ease-out;
 }
 
-option:disabled {
-    color: gray;
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-
-input:focus {
-    border: 2px solid rgba(255, 255, 255, 0.18);
-    outline: none; /* Removes the default focus outline */
-    background-color: lightgray; /* Changes background when typing */
+.select-option {
+  padding: var(--spacing-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  color: var(--text-primary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-#result:focus {
-    background-color: transparent !important; /* Keeps its original background */
-    outline: none;  /* Ensures no outline appears */
+.select-option:hover {
+  background: var(--background-glass-hover);
 }
 
-#temp-result{
-    color: white;
-    padding: 10px;
-    width: 200px;
+.select-option:last-child {
+  border-bottom: none;
+}
+
+/* Result Section */
+.result-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+.result-display {
+  background: var(--background-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--border-radius-small);
+  padding: var(--spacing-md);
     text-align: center;
-    margin-left: 200px;
-    margin-right: -250px;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1.1rem;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: var(--shadow-glass);
 }
 
-#currency{
-    margin-left: -100px;
-}
-#speed{
-    margin-left: -100px;
-}
-#speed-input{
-    margin-top: -2rem;
+.convert-button {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: var(--primary-color);
+  color: var(--text-primary);
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 15px rgba(30, 144, 255, 0.3);
 }
 
-#curr-result {
-    color: white;
-    padding: 10px;
-    width: 200px;
-    margin-bottom: -5rem;
+.convert-button:hover {
+  background: #1c7ed6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(30, 144, 255, 0.4);
+}
+
+.convert-button:active {
+  transform: translateY(0);
+}
+
+.convert-button:focus {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+}
+
+.convert-button:disabled {
+  background: #666;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Loading Indicator */
+.loading-indicator {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--background-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-xl);
     text-align: center;
-    margin-top: 15rem;
-    margin-left: -150px;
-
-}
-#speed-result{
-    color: white;
-    padding: 10px;
-    width: 200px;
-    text-align: center;
-    margin-top: 150px;
-    margin-left: -150px;
+  color: var(--text-primary);
+  z-index: 1000;
+  display: none;
 }
 
-.temp-options{
-    margin-left: 100px;
-    margin-right: -100px;
+.loading-indicator.show {
+  display: block;
 }
 
-#temp-input{
-    margin-left: 100px;
-}
-/* Top 3 btns group */
-.button_group{
-    border: 1px solid grey;
-    padding: 10px;
-    border-radius: 2.5rem;
-    align-items: center;
-    justify-content: space-evenly;
-    margin-bottom: 2rem;
-    display: flex;
-    gap: 10px;
-    background: rgba(255, 255, 255, 0.03);
-    color: black;
-    flex-basis: 100%;
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--border-glass);
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto var(--spacing-sm);
 }
 
-.button_group :hover{
-    background-color: white;
-    color: black;
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
-
-#last_elements{
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    gap: 50px;
-}
-
-#last_elements :hover{
-    background-color: white;
-    color: black;
-}
-
-.form img{
-    max-width: 35px;
-}
-
-/* Arrows */
-.icon i{
-    margin-left: 4rem;
-    cursor: pointer;
-    font-size: 27px;
-    color: white;
-    padding-bottom: 30px;
-}
-.iconCurr i{
-    cursor: pointer;
-    font-size: 27px;
-    color: white;
-    padding-bottom: 30px;
-    margin-top: -1rem;
-    margin-bottom: 25px;
-}
-.iconSpeed i{
-    margin-left: 4rem;
-    cursor: pointer;
-    font-size: 27px;
-    color: white;
-    padding-bottom: 30px;
-    margin-top: -1rem;
-    margin-bottom: 25px;
-}
-/* All Buttons */
-button{
-    border-radius: 1.5rem;
-    border: 1px solid gray;
-}
-
-/* Top 3 buttons */
-.btn{
-    display: block;
-    border-radius: 1.5rem;
-    background-color: inherit;
-    color: white;
-    font: inherit;
-    width: 250px;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-}
-
-.temp{
-    display: flex;
-    gap: 20px;
-    flex-basis: 100%;
-    align-items: center;
-    justify-content: center;
-    
-}
-
-input{
-    gap: 100rem;
-}
-/* FOOTER */
+/* Footer */
 footer {
-    width: 100vw;
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    padding-right: 0;
-    padding-left: 0;
-    margin-top: auto;  /* Pushes footer to the bottom */
-}
-footer p{
-    color: white;
-    
-}
-main {
-    flex-grow: 1;  /* Allows the main content to grow and take the available space */
-}
-/* Definite Styling */
-.rounded{
-    border-radius: 1.5rem;
+  background: rgba(51, 51, 51, 0.9);
+  color: var(--text-primary);
+  text-align: center;
+  padding: var(--spacing-md);
+  margin-top: auto;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
-.h-9{
-    height: 2.25rem;
-} 
-
-.font-semibold{
-    font-weight: 600;
-}
-.text-13px{
-    font-size: 13px;
+.footer-note {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: var(--spacing-xs);
 }
 
-.outfit-font {
-    font-family: "Outfit", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 100;
-    font-style: normal;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .converter-container {
+    padding: var(--spacing-sm);
+  }
+  
+  .converter-form {
+    padding: var(--spacing-md);
+  }
+  
+  .tab-navigation {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .tab-button {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .currency-selector,
+  .unit-selector {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .exchange-icon {
+    transform: rotate(90deg);
+    margin: var(--spacing-sm) 0;
+  }
+  
+  .radio-group {
+    grid-template-columns: 1fr;
+  }
+  
+  .currency-options {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+  
+  .converter-form {
+    padding: var(--spacing-sm);
+  }
+  
+  .currency-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .result-display {
+    font-size: 1rem;
+    padding: var(--spacing-sm);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --background-glass: rgba(0, 0, 0, 0.8);
+    --border-glass: rgba(255, 255, 255, 0.5);
+    --text-primary: #ffffff;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .glass {
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: none;
+  }
+  
+  .tab-navigation,
+  .convert-button {
+    display: none;
+  }
   }
